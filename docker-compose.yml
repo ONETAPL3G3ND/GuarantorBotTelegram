@@ -1,0 +1,19 @@
+version: '1.0'
+
+
+services:
+  mainserver:
+    build: Bot
+    restart: always
+    ports:
+      - 50051:50051
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_gbt:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: toor
