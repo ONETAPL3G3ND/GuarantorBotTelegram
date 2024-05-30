@@ -7,6 +7,23 @@ services:
     restart: always
     ports:
       - 50051:50051
+  dbserver:
+    build: ./db
+    container_name: dbserver
+    volumes:
+      - dbserver:/usr/src/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+      - mongo
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    ports:
+      - "6379:6379"
+
   mongo:
     image: mongo
     restart: always
