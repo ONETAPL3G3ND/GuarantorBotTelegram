@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+message DBRequestCreateNewCard {
+  string Label = 1;
+  float Price = 2;
+  string Data = 3;
+}
+
+message DBResponseCreateNewCard {
+  int32 Status = 1;
+  int32 Id = 2;
+  string Hash = 3;
+}
+
+message DBRequestGetCard {
+  int32 Id = 1;
+}
+
+message DBResponseGetCard {
+  int32 Status = 1;
+  string Label = 2;
+  float Price = 3;
+  string Data = 4;
+}
+
+
+service db {
+  rpc CreateNewCard(DBRequestCreateNewCard) returns (DBResponseCreateNewCard);
+  rpc GetCard(DBRequestGetCard) returns (DBResponseGetCard);
+}
